@@ -39,7 +39,7 @@ import csv
 
 # 3-  Create a function to read in the rainfall csv. Read each row and convert the average rainful to inches.  Write the city, the rain (in cm) and inches to a new file. (include column headings)
 
-def meanCalc(file):
+def createRainfallInIN(file):
     openedFile = open(file, 'r')
     csvReader = csv.reader(openedFile, delimiter=',')
     try:
@@ -47,10 +47,17 @@ def meanCalc(file):
     except:
         newFile = open('newRainfall.csv', 'x')
     csvWriter = csv.writer(newFile)
-    # write headers and call next row
-    csvWriter.writerow(csvReader.__next__())
+    # call next row to skip header
+    csvReader.__next__()
+    newHeader = ['city', 'rainfall in CM', 'rainfall in IN']
+    csvWriter.writerow(newHeader)
     for row in csvReader:
-        print(row)
+        city = row[0]
+        rainfallInCM = float(row[1])
+        rainfallInIN = float(row[1])/2.54
+        newRow = [city, rainfallInCM, rainfallInIN]
+        print(newRow)
+        csvWriter.writerow(newRow)
 
 
-print(meanCalc('rainfallInCM.csv'))
+createRainfallInIN('rainfallInCM.csv')
