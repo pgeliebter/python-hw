@@ -22,6 +22,7 @@ def writeToFile(enumData, filename):
     csvWriter = csv.writer(newFile)
     for item in enumData:
         csvWriter.writerow([item])
+    newFile.close()
 
 
 def primeNumbers(numOfPrimes):

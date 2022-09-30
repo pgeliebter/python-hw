@@ -13,6 +13,7 @@ def meanCalc(file):
     for row in csvReader:
         mean[0] += int(row[ageIndex])
         mean[1] += 1
+    openedFile.close()
     return (mean[0]/mean[1])
 
 
@@ -31,6 +32,7 @@ def meanCalc(file, colIndex):
     for row in csvReader:
         mean[0] += int(row[colIndex])
         mean[1] += 1
+    openedFile.close()
     return (mean[0]/mean[1])
 
 
@@ -56,6 +58,8 @@ def createRainfallInIN(file):
         rainfallInIN = float(row[1])/2.54
         newRow = [city, rainfallInCM, rainfallInIN]
         csvWriter.writerow(newRow)
+    openedFile.close()
+    newFile.close()
 
 
 createRainfallInIN('rainfallInCM.csv')

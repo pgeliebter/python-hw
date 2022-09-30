@@ -16,8 +16,8 @@ part1File.close()
 
 
 print("\nProblem 2: ")
-file = open('birthwt.csv', 'r')
-csvReader = csv.reader(file, delimiter=',')
+part2File = open('birthwt.csv', 'r')
+csvReader = csv.reader(part2File, delimiter=',')
 smokeIndex = 0
 for i, key in enumerate(csvReader.__next__()):
     if key == "smoke":
@@ -27,3 +27,4 @@ for row in csvReader:
     if int(row[smokeIndex]) == 1:
         smokerTotal += 1
 print(smokerTotal)
+part2File.close()
