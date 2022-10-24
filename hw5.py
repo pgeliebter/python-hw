@@ -8,15 +8,21 @@ colors = {1: 'blue', 2: 'red', 3: 'cyan', 4: 'orange', 5: 'violet',
 animals = {1: 'monkey', 2: 'whale', 3: 'shark', 4: 'elephant',
            5: 'lion', 6: 'parrot', 7: 'ant', 8: 'horse', 9: 'dog', 10: 'snake'}
 
-# reading all previous secret names
+# reading all previous secret names or creating file if doesn't exist
 contents = []
 previousCodes = {}
-with open('codenames.csv', 'r') as f:
-    csvReader = csv.reader(f)
-    for row in csvReader:
-        contents.append(row)
-        previousCodes[row[1]] = 1
-    f.close()
+try:
+    with open('codenames.csv', 'r') as f:
+        csvReader = csv.reader(f)
+        for row in csvReader:
+            contents.append(row)
+            previousCodes[row[1]] = 1
+        f.close()
+except:
+    with open('codenames.csv', 'x') as f:
+        csvWriter = csv.writer(f)
+        contents.append(['Name', 'Secret Code Name'])
+        f.close()
 
 
 print('Please enter your name:')
